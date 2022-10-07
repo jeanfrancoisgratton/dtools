@@ -6,7 +6,7 @@ package cmd
 import (
 	//"fmt"
 
-	"dtools/container"
+	"dtools/containers"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ var containerlsCmd = &cobra.Command{
 		if len(args) > 0 && args[0] == "all" {
 			allContainers = true
 		}
-		container.Ls(allContainers)
+		containers.Ls(allContainers)
 	},
 }
 
