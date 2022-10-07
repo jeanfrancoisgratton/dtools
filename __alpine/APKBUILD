@@ -1,15 +1,15 @@
 # Maintainer: Jean-Francois Gratton <jean-francois@famillegratton.net>
 # PACKAGER: APK Builder <builder@famillegratton.net>
-pkgname=vmman3
+pkgname=dtools
 pkgver=1.000
 pkgrel=0
 pkgdir=/data/packages
 builddir="$startdir/src/BUILD"
-pkgdesc="GO-based QEMU virtual machines manager"
-url="https://git.famillegratton.net:3000/devops/vmman3"
+pkgdesc="Various docker tools bundled in a single executable"
+url="https://git.famillegratton.net:3000/devops/dtools"
 arch=x86_64
 license=GPL2
-depends="libvirt libvirt-qemu virt-install sudo"
+depends="docker"
 install="$pkgname.post-install"
 #source="$pkgname-$pkgver-$pkgrel.tar.bz2::http://localhost/$pkgname-$pkgver-$pkgrel.tar.bz2"
 
