@@ -6,6 +6,7 @@ package containers
 
 import (
 	"context"
+	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 	"github.com/jedib0t/go-pretty/v6/table"
@@ -13,6 +14,13 @@ import (
 	"os"
 	"time"
 )
+
+func undecorate(containerName string) string {
+	x := len(containerName)
+	fmt.Println(x)
+	y := containerName[1:]
+	return y
+}
 
 func Ls(all bool) {
 	//clo := types.ContainerListOptions{Quiet: false, Size: true, All: true, Latest: true}
@@ -32,7 +40,8 @@ func Ls(all bool) {
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"ID", "Container image", "Container name", "Created", "State", "Status"})
 	for _, container := range containers {
-		t.AppendRow([]interface{}{container.ID[:10], container.Image, container.Names, time.Unix(container.Created, 0).String(), container.State, container.Status})
+		cn := container.Names[0]
+		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), container.State, container.Status})
 	}
 	t.SortBy([]table.SortBy{
 		{Name: "Container name", Mode: table.Asc},
