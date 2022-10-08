@@ -56,4 +56,7 @@ strip %{_prefix}/bin/%{name}
 
 
 %changelog
+* Fri Oct 07 2022 builder <builder@famillegratton.net> 1.000-0
+- new package built with tito
+
 
