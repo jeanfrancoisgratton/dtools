@@ -38,10 +38,10 @@ func Ls(all bool) {
 
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"ID", "Container image", "Container name", "Created", "State", "Status"})
+	t.AppendHeader(table.Row{"ID", "Container image", "Container name", "Created", "Exposed ports", "State", "Status"})
 	for _, container := range containers {
 		cn := container.Names[0]
-		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), container.State, container.Status})
+		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), container.Ports, container.State, container.Status})
 	}
 	t.SortBy([]table.SortBy{
 		{Name: "Container name", Mode: table.Asc},
