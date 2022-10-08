@@ -15,10 +15,10 @@ install="$pkgname.post-install"
 
 build() {
 	pwd
-	mkdir -p "$builddir" && cd "$builddir"/.. && rm -rf BUILD && cp -R "$startdir"/../source . && mv source BUILD
+	mkdir -p "$builddir" && cd "$builddir"/.. && rm -rf BUILD && cp -R "$startdir"/../src . && mv src BUILD
     cd "$builddir"
     make -f "$startdir"/Makefile prepare
-    go build -o vmman3.exe .
+    go build -o "$pkgname".exe .
 }
 
 package() {
