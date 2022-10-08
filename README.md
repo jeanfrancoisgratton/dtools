@@ -2,4 +2,11 @@
 
 Various docker tools coded in Go<br><br>
 
-**DO NOT USE (YET) THE __$DIR contents**<br>
+This is my Docker swiss knife : this tool will handle:
+- containers
+- images
+- registry tags
+- registry images
+- login to various registries
+
+etc
