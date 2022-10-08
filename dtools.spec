@@ -58,6 +58,9 @@ strip %{_prefix}/bin/%{name}
 
 
 %changelog
+* Fri Oct 07 2022 builder <builder@famillegratton.net> 0.320-0
+- new package built with tito
+
 * Sun Sep 25 2022 builder <builder@famillegratton.net> 0.300-1
 - specfile fix (jean-francois@famillegratton.net)
 - GetConn() is not working, removed (jean-francois@famillegratton.net)
