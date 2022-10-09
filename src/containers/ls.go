@@ -15,13 +15,6 @@ import (
 	"time"
 )
 
-func undecorate(containerName string) string {
-	x := len(containerName)
-	fmt.Println(x)
-	y := containerName[1:]
-	return y
-}
-
 func Ls(all bool) {
 	//clo := types.ContainerListOptions{Quiet: false, Size: true, All: true, Latest: true}
 
@@ -40,8 +33,11 @@ func Ls(all bool) {
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"ID", "Container image", "Container name", "Created", "Exposed ports", "State", "Status"})
 	for _, container := range containers {
+		// This is a design decision: I'll take only the first name in the container slice
 		cn := container.Names[0]
-		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), container.Ports, container.State, container.Status})
+		ports := prettifyPortsList(container.Ports)
+		fmt.Println(ports)
+		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), ports, container.State, container.Status})
 	}
 	t.SortBy([]table.SortBy{
 		{Name: "Container name", Mode: table.Asc},
@@ -51,9 +47,10 @@ func Ls(all bool) {
 	//t.Style().Options.SeparateColumns = false
 	t.Style().Format.Header = text.FormatDefault
 	t.SetRowPainter(func(row table.Row) text.Colors {
-		switch row[4] {
+		switch row[5] {
 		case "running":
-			return text.Colors{text.BgBlack, text.FgHiGreen}
+			//return text.Colors{text.BgBlack, text.FgHiGreen}
+			return text.Colors{text.FgHiGreen}
 			//case "Crashed":
 			//	return text.Colors{text.BgBlack, text.FgHiRed}
 			//case "Blocked":
