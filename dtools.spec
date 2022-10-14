@@ -13,12 +13,12 @@ Summary:    dtools
 
 Group:      docker
 License:    GPL2.0
-URL:        http://git.famillegratton.net:3000/devops/dtools
+URL:        https://github.com/jeanfrancoisgratton/dtools
 
 Source0:    %{name}-%{_version}.tar.gz
 BuildArchitectures: x86_64
-BuildRequires: wget,gcc
-Requires: sudo
+BuildRequires: gcc
+#Requires: sudo
 #Obsoletes: vmman1 > 1.140
 
 %description
@@ -56,7 +56,3 @@ strip %{_prefix}/bin/%{name}
 
 
 %changelog
-* Fri Oct 07 2022 builder <builder@famillegratton.net> 1.000-0
-- new package built with tito
-
-
