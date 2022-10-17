@@ -37,7 +37,9 @@ func Ls(all bool) {
 		cn := container.Names[0]
 		ports := prettifyPortsList(container.Ports)
 		fmt.Println(ports)
-		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), ports, container.State, container.Status})
+		//.Format("2006.01.02 15:04:05")
+		//t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), ports, container.State, container.Status})
+		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).Format("2006.01.02 15:04:05"), ports, container.State, container.Status})
 	}
 	t.SortBy([]table.SortBy{
 		{Name: "Container name", Mode: table.Asc},

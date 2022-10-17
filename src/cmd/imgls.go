@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -13,13 +12,8 @@ import (
 // imglsCmd represents the imgls command
 var imglsCmd = &cobra.Command{
 	Use:   "imgls",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Image list",
+	Long:  `Similar to docker images, this will give you an inventory of all images on the host.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("imgls called")
 	},
