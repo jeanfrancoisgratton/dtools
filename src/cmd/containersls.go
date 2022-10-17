@@ -13,7 +13,7 @@ import (
 // containerlsCmd represents the containerls command
 var containerlsCmd = &cobra.Command{
 	Use:     "ls",
-	Aliases: []string{"cls", "containerls"},
+	Aliases: []string{"lsc", "containerls"},
 	Short:   "List all containers",
 	Long:    `Equivalent to docker ps [-a].`,
 	Run: func(cmd *cobra.Command, args []string) {

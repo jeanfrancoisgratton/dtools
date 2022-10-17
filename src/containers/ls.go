@@ -31,7 +31,7 @@ func Ls(all bool) {
 
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"ID", "Container image", "Container name", "Created", "Exposed ports", "State", "Status"})
+	t.AppendHeader(table.Row{"ID", "Container images", "Container name", "Created", "Exposed ports", "State", "Status"})
 	for _, container := range containers {
 		// This is a design decision: I'll take only the first name in the container slice
 		cn := container.Names[0]

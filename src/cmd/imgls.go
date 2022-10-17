@@ -4,18 +4,22 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-
+	"dtools/images"
 	"github.com/spf13/cobra"
 )
 
 // imglsCmd represents the imgls command
 var imglsCmd = &cobra.Command{
-	Use:   "imgls",
-	Short: "Image list",
-	Long:  `Similar to docker images, this will give you an inventory of all images on the host.`,
+	Use:     "imgls",
+	Aliases: []string{"lsi", "imagels"},
+	Short:   "Image list",
+	Long:    `Similar to docker images, this will give you an inventory of all images on the host.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("imgls called")
+		allImages := false
+		if len(args) > 0 && args[0] == "all" {
+			allImages = true
+		}
+		images.Ls(allImages)
 	},
 }
 
