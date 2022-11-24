@@ -17,12 +17,15 @@ func Ls(allImg bool) {
 		panic(err)
 	}
 
-	images, err := cli.ImageList(ctx, types.ImageListOptions{})
+	images, err := cli.ImageList(ctx, types.ImageListOptions{All: true})
 	if err != nil {
 		panic(err)
 	}
 
 	for _, image := range images {
+		//lastTag := len(image.RepoTags)
+		//getImageTag(image.RepoTags)
 		fmt.Println(image.ID)
+		fmt.Println(image)
 	}
 }

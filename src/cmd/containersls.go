@@ -18,7 +18,7 @@ var containerlsCmd = &cobra.Command{
 	Long:    `Equivalent to docker ps [-a].`,
 	Run: func(cmd *cobra.Command, args []string) {
 		allContainers := false
-		if len(args) > 0 && args[0] == "all" {
+		if len(args) > 0 && (args[0] == "all" || containers.AllContainers) {
 			allContainers = true
 		}
 		containers.Ls(allContainers)
@@ -36,5 +36,6 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// containerlsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	containerlsCmd.Flags().BoolP("allcontainers", "a", false, "Show all containers")
+	containers.AllContainers, _ = rootCmd.Flags().GetBool("allcontainers")
 }
