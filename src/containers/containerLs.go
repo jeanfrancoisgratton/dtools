@@ -1,5 +1,5 @@
 // dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
-// src/containers/imgls.go
+// src/containers/imageLs.go
 // 2022-10-07 12:48:18
 
 package containers
@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-func Ls(all bool) {
+func ContainerList(all bool) {
 	//clo := types.ContainerListOptions{Quiet: false, Size: true, All: true, Latest: true}
 
 	cli, err := client.NewClientWithOpts(client.FromEnv)
@@ -26,7 +26,13 @@ func Ls(all bool) {
 	//containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{Latest: true})
 	containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{All: all})
 	if err != nil {
-		panic(err)
+		errmsg := fmt.Sprintf("%v", err)
+		if errmsg == "Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?" {
+			fmt.Println(errmsg)
+			os.Exit(-1)
+		} else {
+			panic(err)
+		}
 	}
 
 	t := table.NewWriter()
