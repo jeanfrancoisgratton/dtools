@@ -1,5 +1,5 @@
 // dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
-// src/containers/ls.go
+// src/containers/imgls.go
 // 2022-10-07 12:48:18
 
 package containers

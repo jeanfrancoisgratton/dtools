@@ -1,5 +1,5 @@
 // dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
-// src/images/ls.go
+// src/images/imgls.go
 
 package images
 

@@ -21,7 +21,7 @@ var containerlsCmd = &cobra.Command{
 		if len(args) > 0 && (args[0] == "all" || containers.AllContainers) {
 			allContainers = true
 		}
-		containers.Ls(allContainers)
+		containers.ContainerList(allContainers)
 	},
 }
 
