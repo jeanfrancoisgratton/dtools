@@ -20,11 +20,9 @@ func ContainerList(all bool) {
 
 	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {
-		panic(err)
+		fmt.Printf("Unable to create docker client: %s", err)
 	}
 
-	//containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{Latest: true})
-	//containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{All: all})
 	containers, err := cli.ContainerList(context.Background(), clo)
 	if err != nil {
 		errmsg := fmt.Sprintf("%v", err)

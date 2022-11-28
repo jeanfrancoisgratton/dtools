@@ -22,5 +22,6 @@ func StopContainer(containername string) error {
 		log.Printf("Unable to stop container %s: %s", containername, err)
 	}
 
+	fmt.Printf("Container %s is stopped.\n", containername)
 	return nil
 }

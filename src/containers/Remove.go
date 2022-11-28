@@ -25,5 +25,6 @@ func RemoveContainer(containername string) error {
 		return err
 	}
 
+	fmt.Printf("Container %s removed.\n", containername)
 	return nil
 }

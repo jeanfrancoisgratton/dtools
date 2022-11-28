@@ -15,7 +15,7 @@ func ImageList(allImg bool) {
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
-		panic(err)
+		fmt.Printf("Unable to create docker client: %s", err)
 	}
 
 	images, err := cli.ImageList(ctx, types.ImageListOptions{All: true})
