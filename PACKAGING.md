@@ -17,7 +17,7 @@ cd into `__debian` and then run all scripts in their numerical order<br>
 
 Basic steps:
 
- - specfiles with `BuildRequires` need those packages to be installed ahead of tito build; run `__rhel/install-build-deps.sh`
+ - specfiles with `BuildRequires` need those packages to be installed ahead of tito build; run `rpm-install-build-deps.sh`
 - `tito init` (already done, as the presence of the .tito/ directory asserts)
 - `tito tag`, to tag an upcoming release (`tito tag --keep-version` if you do not wish to update the release number)
 - `git push --follow-tags origin`

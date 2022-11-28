@@ -6,7 +6,6 @@ package containers
 
 import (
 	"context"
-	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 	"github.com/jedib0t/go-pretty/v6/table"
@@ -31,14 +30,11 @@ func Ls(all bool) {
 
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"ID", "Container images", "Container name", "Created", "Exposed ports", "State", "Status"})
+	t.AppendHeader(table.Row{"ID", "Container image", "Container name", "Container Created", "Exposed ports", "State", "Status"})
 	for _, container := range containers {
 		// This is a design decision: I'll take only the first name in the container slice
 		cn := container.Names[0]
 		ports := prettifyPortsList(container.Ports)
-		fmt.Println(ports)
-		//.Format("2006.01.02 15:04:05")
-		//t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).String(), ports, container.State, container.Status})
 		t.AppendRow([]interface{}{container.ID[:10], container.Image, cn[1:], time.Unix(container.Created, 0).Format("2006.01.02 15:04:05"), ports, container.State, container.Status})
 	}
 	t.SortBy([]table.SortBy{
