@@ -6,6 +6,7 @@ package containers
 
 import (
 	"context"
+	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 	"github.com/jedib0t/go-pretty/v6/table"
