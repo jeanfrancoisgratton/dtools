@@ -16,7 +16,7 @@ import (
 )
 
 func ContainerList(all bool) {
-	//clo := types.ContainerListOptions{Quiet: false, Size: true, All: true, Latest: true}
+	clo := types.ContainerListOptions{Quiet: false, Size: true, All: true, Latest: true}
 
 	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {
@@ -24,7 +24,8 @@ func ContainerList(all bool) {
 	}
 
 	//containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{Latest: true})
-	containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{All: all})
+	//containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{All: all})
+	containers, err := cli.ContainerList(context.Background(), clo)
 	if err != nil {
 		errmsg := fmt.Sprintf("%v", err)
 		if errmsg == "Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?" {

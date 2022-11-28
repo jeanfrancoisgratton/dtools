@@ -1,0 +1,26 @@
+// dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
+// src/containers/stopStartRestart.go
+// 2022-11-28 13:47:22
+
+package containers
+
+import (
+	"context"
+	"fmt"
+	"github.com/docker/docker/client"
+	"log"
+)
+
+func StopContainer(containername string) error {
+	ctx := context.Background()
+	client, err := client.NewClientWithOpts(client.FromEnv)
+	if err != nil {
+		fmt.Printf("Unable to create docker client: %s", err)
+	}
+
+	if err := client.ContainerStop(ctx, containername, nil); err != nil {
+		log.Printf("Unable to stop container %s: %s", containername, err)
+	}
+
+	return nil
+}
