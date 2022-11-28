@@ -1,0 +1,3 @@
+- [ ] Complete images ls
+- [ ] docker container rename
+- [ ] docker tag

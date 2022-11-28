@@ -9,6 +9,8 @@ import (
 	"github.com/docker/docker/api/types"
 )
 
+var AllContainers bool
+
 func prettifyPortsList(ports []types.Port) string {
 	var portsString, sourcePort string
 	for _, val := range ports {

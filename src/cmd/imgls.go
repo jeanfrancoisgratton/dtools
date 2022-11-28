@@ -19,7 +19,7 @@ var imglsCmd = &cobra.Command{
 		if len(args) > 0 && args[0] == "all" {
 			allImages = true
 		}
-		images.Ls(allImages)
+		images.ImageList(allImages)
 	},
 }
 
