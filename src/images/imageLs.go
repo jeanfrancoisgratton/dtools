@@ -30,9 +30,6 @@ func ImageList(allImg bool) {
 	}
 
 	for _, image := range images {
-		//lastTag := len(image.RepoTags)
-		//getImageTag(image.RepoTags)
-		fmt.Println(image.ID)
-		fmt.Println(image)
+		getImageTag(image.RepoTags)
 	}
 }
