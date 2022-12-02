@@ -82,3 +82,13 @@ func Stopall() error {
 
 	return nil
 }
+
+func Startall() error {
+	containers := ContainerList(true)
+
+	for _, container := range containers {
+		StartContainer(container.Names[0])
+	}
+
+	return nil
+}

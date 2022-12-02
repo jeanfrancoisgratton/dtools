@@ -1,7 +1,7 @@
 - [ x ] docker ps
 - [ x ] docker images
 - [ x ] docker kill, docker stop
-- [ x ] docker killall, stopall
+- [ x ] docker killall, stopall, startall
 - [ x ] docker start, docker restart
 - [ ] docker run
 - [ ] docker exec

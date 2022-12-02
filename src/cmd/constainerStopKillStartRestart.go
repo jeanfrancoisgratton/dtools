@@ -56,6 +56,14 @@ var startCmd = &cobra.Command{
 	},
 }
 
+var startCallmd = &cobra.Command{
+	Use:   "startall",
+	Short: "Starts all containers",
+	Run: func(cmd *cobra.Command, args []string) {
+		containers.Startall()
+	},
+}
+
 var restartCmd = &cobra.Command{
 	Use:   "restart",
 	Short: "Restarts a container",
@@ -70,6 +78,7 @@ func init() {
 	rootCmd.AddCommand(stopallCmd)
 	rootCmd.AddCommand(killallCmd)
 	rootCmd.AddCommand(startCmd)
+	rootCmd.AddCommand(startCallmd)
 	rootCmd.AddCommand(restartCmd)
 
 	// Here you will define your flags and configuration settings.
