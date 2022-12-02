@@ -25,3 +25,18 @@ func StopContainer(containername string) error {
 	fmt.Printf("Container %s is stopped.\n", containername)
 	return nil
 }
+
+func KillContainer(containername string) error {
+	ctx := context.Background()
+	client, err := client.NewClientWithOpts(client.FromEnv)
+	if err != nil {
+		fmt.Printf("Unable to create docker client: %s", err)
+	}
+
+	if err := client.ContainerKill(ctx, containername, "TERM"); err != nil {
+		log.Printf("Unable to stop container %s: %s", containername, err)
+	}
+
+	fmt.Printf("Container %s is killed.\n", containername)
+	return nil
+}

@@ -1,5 +1,5 @@
 // dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
-// src/cmd/constainerStop.go
+// src/cmd/constainerStopKill.go
 // 2022-11-28 13:55:19
 
 package cmd
@@ -12,20 +12,25 @@ import (
 // stopCmd represents the stop command
 var stopCmd = &cobra.Command{
 	Use:   "stop",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Cleanly stops a running container",
+	Long:  `This will attempt to gracefully shut a container down.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		containers.StopContainer(args[0])
 	},
 }
 
+var killCmd = &cobra.Command{
+	Use:   "kill",
+	Short: "Kills a running container",
+	Long:  `Will SIGTERM a running container.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		containers.KillContainer(args[0])
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(stopCmd)
+	rootCmd.AddCommand(killCmd)
 
 	// Here you will define your flags and configuration settings.
 
