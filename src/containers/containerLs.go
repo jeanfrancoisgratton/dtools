@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-func ContainerList(all bool) {
+func ContainerList(quiet bool) []types.Container {
 	clo := types.ContainerListOptions{Quiet: false, Size: true, All: true, Latest: true}
 
 	cli, err := client.NewClientWithOpts(client.FromEnv)
@@ -32,6 +32,10 @@ func ContainerList(all bool) {
 		} else {
 			panic(err)
 		}
+	}
+
+	if quiet {
+		return containers
 	}
 
 	t := table.NewWriter()
@@ -65,4 +69,5 @@ func ContainerList(all bool) {
 		return nil
 	})
 	t.Render()
+	return nil
 }
