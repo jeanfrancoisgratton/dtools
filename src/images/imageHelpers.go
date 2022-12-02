@@ -5,45 +5,53 @@
 package images
 
 import (
-	"fmt"
 	"strings"
+	"time"
 )
 
-func splitImageTag(imagetag string) (string, string) {
-	dockerRegistry := "LOCAL"
-	taggedImageName := ""
-	tag := "latest"
+// REPOSITORY              TAG              IMAGE ID       CREATED      SIZE
+// rpmbuilder              latest           d7f4c25238e4   3 days ago   414MB
+// nexus:9820/rpmbuilder   10.00.00-arm64   d7f4c25238e4   3 days ago   414MB
+// rocky                   test             662704dd4eee   3 days ago   301MB
+
+type imageSpec struct {
+	repo, name, tag, created string
+	size                     float32
+}
+
+func splitImageTag(imagetag string) (string, string, string) {
+	dockerRegistry := "--"
+	imgtag := "latest"
+	imgname := ""
 
 	slashIndex := strings.Index(imagetag, "/")
 	columnIndex := strings.LastIndex(imagetag, ":")
 
 	// This means: no remote registry
-	if slashIndex != -1 {
-		dockerRegistry = imagetag
+	if slashIndex == -1 {
+		//if columnIndex != -1 {
+		imgname = imagetag[:columnIndex]
+		imgtag = imagetag[columnIndex+1:]
+		//}
+	} else {
+		dockerRegistry = imagetag[:slashIndex]
+		imgname = imagetag[slashIndex+1 : columnIndex]
+		imgtag = imagetag[columnIndex+1:]
 	}
-
+	return dockerRegistry, imgname, imgtag
 }
-func getImageTag(imageTagSlice []string) bool {
+func getImageTag(imageTagSlice []string, created int64, size int64) []imageSpec {
+	var imgspecSlice []imageSpec
+	var imgspec imageSpec
 
 	for _, imagetag := range imageTagSlice {
 		// First, we split image.RepoTags in two parts: reponame w/ port, and image name w/ tag
-		dockerRegistry, imageName := splitImageTag(imagetag)
-		imageRepository := "LOCAL"
-		//tagLen := len(imageTag)
-
-		if strings.Contains(imagetag, "/") {
-			slashPos := strings.Index(imagetag, "/") + 1
-			imageRepository = imagetag[:slashPos-1]
-			imageName = imagetag[slashPos:len(imagetag)]
-		} else {
-			imageName = imagetag[:strings.Index(imagetag, ":")]
-		}
-		fmt.Println("Full name: ", imagetag)
-		fmt.Println("Docker registry: ", imageRepository)
-		fmt.Println("Image name: ", imageName)
-		fmt.Println("Image tag: ")
-		fmt.Println()
-
+		imgspec.repo, imgspec.name, imgspec.tag = splitImageTag(imagetag)
+		// Then we add creation time & size
+		imgspec.created = time.Unix(created, 0).Format("2006.01.02 15:04:05")
+		imgspec.size = float32(size / 1024 / 1024)
+		imgspecSlice = append(imgspecSlice, imgspec)
 	}
-	return true
+
+	return imgspecSlice
 }

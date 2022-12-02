@@ -11,7 +11,7 @@ import (
 // imglsCmd represents the imgls command
 var imglsCmd = &cobra.Command{
 	Use:     "imgls",
-	Aliases: []string{"lsi", "imagels"},
+	Aliases: []string{"lsi", "imagels", "ils"},
 	Short:   "Image list",
 	Long:    `Similar to docker images, this will give you an inventory of all images on the host.`,
 	Run: func(cmd *cobra.Command, args []string) {
