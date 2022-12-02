@@ -1,3 +1,19 @@
-- [ ] Complete images ls
+- [ x ] docker ps
+- [ x ] docker images
+- [ x ] docker kill, docker stop
+- [ ] docker start, docker restart
+- [ ] docker run
+- [ ] docker exec
 - [ ] docker container rename
 - [ ] docker tag
+- [ ] container removal
+- [ ] image removal
+- [ ] dtools ls shows state = exited, with no timestamp. should add timestamp
+- [ ] registry commands
+- [ ] dockerrm.sh
+- [ ] dockerclean.sh
+- [ ] login, auth handling
+- [ ] dockergettags.sh, dockergetcatalog.sh
+- [ ] volume handling
+- [ ] network handling
+- [ ] docker build
