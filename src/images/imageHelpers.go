@@ -49,7 +49,7 @@ func getImageTag(imageTagSlice []string, created int64, size int64) []imageSpec 
 		imgspec.repo, imgspec.name, imgspec.tag = splitImageTag(imagetag)
 		// Then we add creation time & size
 		imgspec.created = time.Unix(created, 0).Format("2006.01.02 15:04:05")
-		imgspec.size = float32(size / 1024 / 1024)
+		imgspec.size = (float32)(size / 1024.0 / 1024.0)
 		imgspecSlice = append(imgspecSlice, imgspec)
 	}
 
