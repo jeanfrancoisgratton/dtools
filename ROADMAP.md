@@ -3,6 +3,7 @@
 - [ x ] docker kill, docker stop
 - [ x ] docker killall, stopall, startall
 - [ x ] docker start, docker restart
+- [ x ] add image ID in dtools ils
 - [ ] docker run
 - [ ] docker exec
 - [ ] docker container rename
@@ -17,3 +18,4 @@
 - [ ] volume handling
 - [ ] network handling
 - [ ] docker build
+- [ ] remote host (docher -H)

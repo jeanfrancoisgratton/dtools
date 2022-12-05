@@ -15,8 +15,8 @@ import (
 // rocky                   test             662704dd4eee   3 days ago   301MB
 
 type imageSpec struct {
-	repo, name, tag, created string
-	size                     float32
+	id, repo, name, tag, created string
+	size                         float32
 }
 
 func splitImageTag(imagetag string) (string, string, string) {
@@ -40,18 +40,18 @@ func splitImageTag(imagetag string) (string, string, string) {
 	}
 	return dockerRegistry, imgname, imgtag
 }
-func getImageTag(imageTagSlice []string, created int64, size int64) []imageSpec {
+func getImageTag(id string, imageTagSlice []string, created int64, size int64) []imageSpec {
 	var imgspecSlice []imageSpec
 	var imgspec imageSpec
 
 	for _, imagetag := range imageTagSlice {
 		// First, we split image.RepoTags in two parts: reponame w/ port, and image name w/ tag
 		imgspec.repo, imgspec.name, imgspec.tag = splitImageTag(imagetag)
+		imgspec.id = id[7:23]
 		// Then we add creation time & size
 		imgspec.created = time.Unix(created, 0).Format("2006.01.02 15:04:05")
 		imgspec.size = (float32)(size / 1024.0 / 1024.0)
 		imgspecSlice = append(imgspecSlice, imgspec)
 	}
-
 	return imgspecSlice
 }

@@ -15,6 +15,7 @@ import (
 
 func ImageList(allImg bool) {
 	var imgspecSlice []imageSpec
+	//var imgID string
 
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
@@ -34,15 +35,16 @@ func ImageList(allImg bool) {
 	}
 
 	for _, image := range images {
-		imgspecSlice = append(imgspecSlice, getImageTag(image.RepoTags, image.Created, image.Size)...)
+		//imgSpec := getImageTag(image.ID, image.RepoTags, image.Created, image.Size)
+		imgspecSlice = append(imgspecSlice, getImageTag(image.ID, image.RepoTags, image.Created, image.Size)...)
 	}
 
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"Repository", "Image name", "Image tag", "Creation time", "Approx size"})
+	t.AppendHeader(table.Row{"Registry", "Image name", "Image tag", "Image ID", "Creation time", "Approx size"})
 	for _, imgspec := range imgspecSlice {
 		// This is a design decision: I'll take only the first name in the container slice
-		t.AppendRow([]interface{}{imgspec.repo, imgspec.name, imgspec.tag, imgspec.created, fmt.Sprintf("%vMB", imgspec.size)})
+		t.AppendRow([]interface{}{imgspec.repo, imgspec.name, imgspec.tag, imgspec.id, imgspec.created, fmt.Sprintf("%vMB", imgspec.size)})
 	}
 	t.SortBy([]table.SortBy{
 		{Name: "Image name", Mode: table.Asc},
