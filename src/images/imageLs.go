@@ -15,7 +15,6 @@ import (
 
 func ImageList(allImg bool) {
 	var imgspecSlice []imageSpec
-	//var imgID string
 
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
