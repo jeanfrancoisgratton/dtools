@@ -8,10 +8,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// imglsCmd represents the imgls command
 var imglsCmd = &cobra.Command{
-	Use:     "imgls",
-	Aliases: []string{"lsi", "imagels", "ils"},
+	Use:     "ils",
+	Aliases: []string{"lsi", "imagels", "imgls"},
 	Short:   "Image list",
 	Long:    `Similar to docker images, this will give you an inventory of all images on the host.`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,8 +22,19 @@ var imglsCmd = &cobra.Command{
 	},
 }
 
+var imgpullCmd = &cobra.Command{
+	Use:     "pull",
+	Aliases: []string{"fetch", "get"},
+	Short:   "Pulls an image from a registry",
+	Long:    `Works exactly like docker pull.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		images.Pull(args)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(imglsCmd)
+	rootCmd.AddCommand(imgpullCmd)
 
 	// Here you will define your flags and configuration settings.
 

@@ -1,5 +1,5 @@
 // dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
-// src/cmd/constainerStopKillStartRestart.go
+// src/cmd/containersCommands.go
 // 2022-11-28 13:55:19
 
 package cmd
@@ -9,7 +9,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// stopCmd represents the stop command
 var stopCmd = &cobra.Command{
 	Use:     "stop",
 	Aliases: []string{"down", "containerdown"},
@@ -72,6 +71,25 @@ var restartCmd = &cobra.Command{
 	},
 }
 
+var rmCmd = &cobra.Command{
+	Use:   "rm",
+	Short: "Remove container",
+	Long:  `This will remove a stopped container.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		containers.RemoveContainer(args[0])
+	},
+}
+
+var lsCmd = &cobra.Command{
+	Use:     "ls",
+	Aliases: []string{"lsc", "containerls"},
+	Short:   "List all containers",
+	Long:    `Equivalent to docker ps [-a].`,
+	Run: func(cmd *cobra.Command, args []string) {
+		containers.ContainerList(containers.QuietOutput)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(stopCmd)
 	rootCmd.AddCommand(killCmd)
@@ -80,6 +98,8 @@ func init() {
 	rootCmd.AddCommand(startCmd)
 	rootCmd.AddCommand(startCallmd)
 	rootCmd.AddCommand(restartCmd)
+	rootCmd.AddCommand(rmCmd)
+	rootCmd.AddCommand(lsCmd)
 
 	// Here you will define your flags and configuration settings.
 

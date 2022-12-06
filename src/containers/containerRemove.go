@@ -1,5 +1,5 @@
 // dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
-// src/containers/Remove.go
+// src/containers/containerRemove.go
 // 2022-11-28 13:48:44
 
 package containers

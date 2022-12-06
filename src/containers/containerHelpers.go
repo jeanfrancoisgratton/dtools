@@ -1,5 +1,5 @@
 // dtools : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
-// src/containers/containersHelpers.go
+// src/containers/containerHelpers.go
 // 2022-10-08 13:56:41
 
 package containers
