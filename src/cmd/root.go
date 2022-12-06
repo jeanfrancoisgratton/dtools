@@ -9,10 +9,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var version = "0.100 (2022.12.06)"
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "dtools",
-	Short: "A modern-day docker Swiss knife",
+	Use:     "dtools",
+	Short:   "A modern-day docker Swiss knife",
+	Version: version,
 	Long: `This tools allows you to manipulate containers, images and tags.
 
 You will also be able to list tags and images from a remote registry, select which

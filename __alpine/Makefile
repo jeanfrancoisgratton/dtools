@@ -13,6 +13,3 @@ install:
 	test -d $(DESTDIR)$(PREFIX)/bin || mkdir -p $(DESTDIR)$(PREFIX)/bin
 
 	install -pm 755 $(BUILDDIR)/dtools.exe $(DESTDIR)$(PREFIX)/bin/dtools
-
-
-	
