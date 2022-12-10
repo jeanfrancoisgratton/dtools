@@ -33,14 +33,13 @@ var imgpullCmd = &cobra.Command{
 }
 
 var imgrmCmd = &cobra.Command{
-	Use:   "rmi",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Use:     "rmi",
+	Aliases: []string{"imgrm", "imagerm"},
+	Short:   "Removes a docker image",
+	Long: `Removes a docker image.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+The image will not be removed unless you use the -f flag, which
+will also remove any container(s) used by that image.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		images.ImageRemove(args)
 	},
