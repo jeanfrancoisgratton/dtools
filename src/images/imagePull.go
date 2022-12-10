@@ -14,7 +14,7 @@ import (
 	"runtime"
 )
 
-func Pull(args []string) {
+func ImagePull(args []string) {
 	ctx := context.Background()
 	bAllImages := false
 	f, err := os.Create("/tmp/dockerpull.txt")

@@ -19,6 +19,8 @@ type imageSpec struct {
 	size                         float32
 }
 
+var ForceRemoval bool
+
 func splitImageTag(imagetag string) (string, string, string) {
 	dockerRegistry := "--"
 	imgtag := "latest"

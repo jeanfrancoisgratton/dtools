@@ -28,13 +28,28 @@ var imgpullCmd = &cobra.Command{
 	Short:   "Pulls an image from a registry",
 	Long:    `Works exactly like docker pull.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		images.Pull(args)
+		images.ImagePull(args)
+	},
+}
+
+var imgrmCmd = &cobra.Command{
+	Use:   "rmi",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		images.ImageRemove(args)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(imglsCmd)
 	rootCmd.AddCommand(imgpullCmd)
+	rootCmd.AddCommand(imgrmCmd)
 
 	// Here you will define your flags and configuration settings.
 
@@ -45,4 +60,7 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// imglsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	imgrmCmd.Flags().BoolP("force", "f", false, "Force removal of image and children images")
+
+	images.ForceRemoval, _ = imgrmCmd.Flags().GetBool("force")
 }
