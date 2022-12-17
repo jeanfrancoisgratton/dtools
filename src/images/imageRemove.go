@@ -2,7 +2,6 @@
 // src/images/imageRemove.go
 // 2022-12-08 08:33:49
 
-
 package images
 
 import (
@@ -13,12 +12,13 @@ import (
 )
 
 func ImageRemove(args []string) {
-	removalOptions := types.ImageRemoveOptions{ForceRemoval, ForceRemoval}
+	//removalOptions := types.ImageRemoveOptions{ForceRemoval, ForceRemoval}
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
 		fmt.Printf("Unable to create docker client: %s", err)
 	}
-
-	cli.ImageRemove(ctx, "", removalOptions)
+	res, _ := cli.ImageSearch(ctx, args[0], types.ImageSearchOptions{})
+	fmt.Println("RES = ", res)
+	//cli.ImageRemove(ctx, "", removalOptions)
 }
