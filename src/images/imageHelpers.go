@@ -7,6 +7,7 @@ package images
 import (
 	"strings"
 	"time"
+	"math"
 )
 
 // REPOSITORY              TAG              IMAGE ID       CREATED      SIZE
@@ -15,8 +16,7 @@ import (
 // rocky                   test             662704dd4eee   3 days ago   301MB
 
 type imageSpec struct {
-	id, repo, name, tag, created string
-	size                         float32
+	id, repo, name, tag, created, size string
 }
 
 var ForceRemoval bool
@@ -52,8 +52,18 @@ func getImageTag(id string, imageTagSlice []string, created int64, size int64) [
 		imgspec.id = id[7:]
 		// Then we add creation time & size
 		imgspec.created = time.Unix(created, 0).Format("2006.01.02 15:04:05")
-		imgspec.size = (float32)(size / 1024.0 / 1024.0)
+		imgspec.size = formatImageSize(size)
+		//imgspec.size = (float32)(size / 1000.0 / 1000.0)
+		//imgspec.size = (float32)(size / 1024.0 / 1024.0)
 		imgspecSlice = append(imgspecSlice, imgspec)
 	}
 	return imgspecSlice
+}
+
+func formatImageSize(sz int64) string {
+	base := (int) (math.Log10((float64)(sz)))
+	switch base:{
+	case 5:
+
+}
 }

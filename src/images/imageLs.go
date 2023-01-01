@@ -49,22 +49,6 @@ func ImageList(allImg bool) {
 		{Name: "Image name", Mode: table.Asc},
 	})
 	t.SetStyle(table.StyleBold)
-	//t.Style().Options.DrawBorder = false
-	//t.Style().Options.SeparateColumns = false
 	t.Style().Format.Header = text.FormatDefault
-	//t.SetRowPainter(func(row table.Row) text.Colors {
-	//	switch row[5] {
-	//	case "running":
-	//		//return text.Colors{text.BgBlack, text.FgHiGreen}
-	//		return text.Colors{text.FgHiGreen}
-	//		//case "Crashed":
-	//		//	return text.Colors{text.BgBlack, text.FgHiRed}
-	//		//case "Blocked":
-	//		//case "Suspended":
-	//		//case "Paused":
-	//		//	return text.Colors{text.BgHiBlack, text.FgHiYellow}
-	//	}
-	//	return nil
-	//})
 	t.Render()
 }
