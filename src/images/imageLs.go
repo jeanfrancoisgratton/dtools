@@ -43,7 +43,7 @@ func ImageList(allImg bool) {
 	t.AppendHeader(table.Row{"Registry", "Image name", "Image tag", "Image ID", "Creation time", "Approx size"})
 	for _, imgspec := range imgspecSlice {
 		// This is a design decision: I'll take only the first name in the container slice
-		t.AppendRow([]interface{}{imgspec.repo, imgspec.name, imgspec.tag, imgspec.id[:12], imgspec.created, fmt.Sprintf("%vMB", imgspec.size)})
+		t.AppendRow([]interface{}{imgspec.repo, imgspec.name, imgspec.tag, imgspec.id[:12], imgspec.created, imgspec.formattedSize})
 	}
 	t.SortBy([]table.SortBy{
 		{Name: "Image name", Mode: table.Asc},
